@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Kinonik
+{
+    public partial class PocetnaForma : Form
+    {
+        public PocetnaForma()
+        {
+            InitializeComponent();
+        }
+
+        private void PocetnaForma_Load(object sender, EventArgs e)
+        {
+            switch(RepozitorijPrijava.prijavljeniKorisnik.uloga)
+            {
+                case Uloga.Zaposlenik:
+                    {
+                        buttonUpravljanjeFilmovima.Visible = false;
+                        buttonUpravljanjeTerminima.Visible = true;
+                        break;
+                    };
+                case Uloga.Administrator:
+                    {
+                        buttonUpravljanjeFilmovima.Visible = true;
+                        buttonUpravljanjeTerminima.Visible = true;
+                        break;
+                    }
+                case Uloga.Superadmin:
+                    {
+                        buttonUpravljanjeFilmovima.Visible = false;
+                        buttonUpravljanjeTerminima.Visible = false;
+                        break;
+                    }
+            }
+            labelKorisnickoIme.Text = $"Korisničko ime: {RepozitorijPrijava.prijavljeniKorisnik.korisnickoIme}";
+            labelUloga.Text = $"Uloga: {RepozitorijPrijava.prijavljeniKorisnik.uloga}";
+
+        }
+
+        private void buttonUpravljanjeFilmovima_Click(object sender, EventArgs e)
+        {
+            FrmUpravljanjeFilmovima form = new FrmUpravljanjeFilmovima();
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+        }
+
+<<<<<<< HEAD
+        private void buttonUpravljanjeProizvodima_Click(object sender, EventArgs e)
+        {
+            FrmProizvodi formProizvodi = new FrmProizvodi();
+            this.Hide();
+            formProizvodi.ShowDialog();
+=======
+        private void buttonUpravljanjeTerminima_Click(object sender, EventArgs e)
+        {
+            FrmUpravljanjeTerminima form = new FrmUpravljanjeTerminima();
+            this.Hide();
+            form.ShowDialog();
+>>>>>>> upravljanje_terminom
+            this.Show();
+        }
+    }
+}
